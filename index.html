@@ -24,7 +24,7 @@
         <a href="https://bundlephobia.com/result?p=rehype-video"><img src="https://img.shields.io/bundlephobia/minzip/rehype-video" alt="npm bundle size"></a>
       </p>
       <p>Markdown supports video play with <code>.mp4</code> and <code>.mov</code> URLs. like <a href="https://github.blog/2021-05-13-video-uploads-available-github/"><code>github video</code></a> features.</p>
-      <p>The following is a sample test of the video preview:</p>
+      <p>The following is a sample test of the video preview in GitHub:</p>
       <p><a href="https://user-images.githubusercontent.com/1680273/138299599-88547edd-859c-44c9-8b52-2cc06f7f2dd3.mov">https://user-images.githubusercontent.com/1680273/138299599-88547edd-859c-44c9-8b52-2cc06f7f2dd3.mov</a></p>
       <h2 id="installation"><a class="anchor" aria-hidden="true" tabindex="-1" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
       <p>This package is <a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">ESM only</a>: Node 12+ is needed to use it and it must be import instead of require.</p>
@@ -96,7 +96,7 @@ Good \`idea\`!!</span><span class="token template-punctuation string">`</span></
       <pre class="language-ts"><code class="language-ts"><span class="token keyword module">export</span> <span class="token keyword">declare</span> <span class="token keyword">type</span> <span class="token class-name"><span class="token maybe-class-name">RehypeVideoOptions</span></span> <span class="token operator">=</span> <span class="token punctuation">{</span>
   <span class="token doc-comment comment">/**
    * URL suffix verification.
-   * <span class="token keyword">@default</span> /(.mp4|.mov)$/
+   * <span class="token keyword">@default</span> /\/(.*)(.mp4|.mov)$/
    */</span>
   test<span class="token operator">?</span><span class="token operator">:</span> <span class="token known-class-name class-name">RegExp</span><span class="token punctuation">;</span>
   <span class="token doc-comment comment">/**
