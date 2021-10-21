@@ -1,6 +1,6 @@
 {
   "name": "rehype-video",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Markdown supports video play with `.mp4` and `.mov` URLs.",
   "homepage": "https://jaywcjlove.github.io/rehype-video",
   "sideEffects": false,

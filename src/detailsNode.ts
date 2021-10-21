@@ -1,5 +1,4 @@
-
-import { Root, Element } from 'hast';
+import { Element } from 'hast';
 
 export function detailsNode(title?: string): Element {
   return {
