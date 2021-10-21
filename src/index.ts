@@ -10,7 +10,7 @@ export type RehypeVideoOptions = {
    */
   test?: RegExp;
   /**
-   * Support `<details>` tag.
+   * Support `<details>` tag to wrap <video>.
    * @default true
    */
   details?: boolean;
