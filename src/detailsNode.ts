@@ -5,7 +5,7 @@ export function detailsNode(title?: string): Element {
   return {
     type: 'element',
     tagName: 'details',
-    properties: { open: true },
+    properties: { open: true, className: 'octicon octicon-video' },
     children: [
       {
         type: 'element',
