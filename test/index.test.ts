@@ -90,6 +90,28 @@ it('rehype-video 5 test case', () => {
     expect(htmlStr).toEqual(expected);
 });
 
+it('rehype-video 6 test case', () => {
+  const mrkStr = `<p><a href="./004.mp4">./004.mp4</a></p>`;
+  const expected = `<video muted controls style="max-height:640px;" src="./004.mp4"></video>`
+  const htmlStr = rehype()
+    .data('settings', { fragment: true })
+    .use(rehypeVideo, { details: false })
+    .processSync(mrkStr)
+    .toString();
+    expect(htmlStr).toEqual(expected);
+});
+
+it('rehype-video 7 test case', () => {
+  const mrkStr = `<p>./sdf 004.mp4</p>`;
+  const expected = `<p>./sdf 004.mp4</p>`;
+  const htmlStr = rehype()
+    .data('settings', { fragment: true })
+    .use(rehypeVideo, { details: false })
+    .processSync(mrkStr)
+    .toString();
+    expect(htmlStr).toEqual(expected);
+});
+
 it('rehype-video options details=true test case', () => {
   const mrkStr = `
     https://github.com/001.mp4 hi!

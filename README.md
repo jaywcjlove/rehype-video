@@ -9,7 +9,7 @@ rehype-video
 
 Markdown supports video play with `.mp4` and `.mov` URLs. like [`github video`](https://github.blog/2021-05-13-video-uploads-available-github/) features.
 
-The following is a sample test of the video preview:
+The following is a sample test of the video preview in GitHub:
 
 https://user-images.githubusercontent.com/1680273/138299599-88547edd-859c-44c9-8b52-2cc06f7f2dd3.mov
 
@@ -107,7 +107,7 @@ Output:
 export declare type RehypeVideoOptions = {
   /**
    * URL suffix verification.
-   * @default /(.mp4|.mov)$/
+   * @default /\/(.*)(.mp4|.mov)$/
    */
   test?: RegExp;
   /**
