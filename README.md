@@ -9,6 +9,10 @@ rehype-video
 
 Markdown supports video play with `.mp4` and `.mov` URLs. like [`github video`](https://github.blog/2021-05-13-video-uploads-available-github/) features.
 
+The following is a sample test of the video preview:
+
+https://user-images.githubusercontent.com/1680273/138299599-88547edd-859c-44c9-8b52-2cc06f7f2dd3.mov
+
 ## Installation
 
 This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c): Node 12+ is needed to use it and it must be import instead of require.
