@@ -7,7 +7,7 @@ rehype-video
 [![Coverage Status](https://jaywcjlove.github.io/rehype-video/badges.svg)](https://jaywcjlove.github.io/rehype-video/lcov-report/)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/rehype-video)](https://bundlephobia.com/result?p=rehype-video)
 
-Markdown supports video play with `.mp4` and `.mov` URLs. like [`github video`](https://github.blog/2021-05-13-video-uploads-available-github/) features.
+Add improved video syntax: links to `.mp4` and `.mov` turn into videos. like [`github video`](https://github.blog/2021-05-13-video-uploads-available-github/) features.
 
 The following is a sample test of the video preview in GitHub:
 
