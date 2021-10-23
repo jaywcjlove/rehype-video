@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -15,45 +15,24 @@ jobs:
 
       - run: npm install
       - run: npm run build
-
-  test:
-    runs-on: ubuntu-20.04
-    needs: build
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
       - run: npm run type-check
       - run: npm run coverage
-
-  create-wesite:
-    runs-on: ubuntu-20.04
-    needs: test
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
 
       - run: npm i coverage-badges-cli markdown-to-html-cli -g
       - run: coverage-badges
       - run: markdown-to-html --output coverage/index.html
-
-  deploy:
-    runs-on: ubuntu-20.04
-    needs: create-wesite
-    steps:
-      - uses: actions/checkout@v2
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./coverage
 
+      - run: npm install @jsdevtools/npm-publish -g
+      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./package.json
+
   release:
     runs-on: ubuntu-20.04
-    needs: create-wesite
+    needs: build-deploy
     steps:
       - uses: actions/checkout@v2
       - name: Create Tag
@@ -84,15 +63,3 @@ jobs:
             ${{ steps.changelog.outputs.compareurl }}
 
             ${{ steps.changelog.outputs.changelog }}
-
-  publish-npm:
-    runs-on: ubuntu-20.04
-    needs: create-wesite
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - run: npm install @jsdevtools/npm-publish -g
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./package.json
