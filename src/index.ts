@@ -17,14 +17,20 @@ export type RehypeVideoOptions = {
 }
 
 const properties = { muted: 'muted', controls: 'controls', style: 'max-height:640px;' };
+const queryStringToObject = (url: string) =>
+  [...new URLSearchParams(url.split('?!#')[1])].reduce(
+    (a: Record<string, string>, [k, v]) => ((a[k] = v), a),
+    {}
+  );
 
 function reElement(node: Element, details: boolean, href: string) {
-  const filename = href.split('/').pop();
+  const filename = href.split('/').pop()?.replace(/(\?|!|\#|$).+/, '');
   node.properties = { ...properties, src: href };
   node.tagName = 'video';
   node.children = [];
+  const { title = filename }= queryStringToObject(href);
   if (details) {
-    const reNode = detailsNode(filename);
+    const reNode = detailsNode(title);
     reNode.children.push({ ...node });
     node.children = reNode.children;
     node.tagName = reNode.tagName;
@@ -36,7 +42,7 @@ const RehypeVideo: Plugin<[RehypeVideoOptions?], Root> = (options) => {
   const { test = /\/(.*)(.mp4|.mov)$/, details = true } = options || {};
   return (tree) => {
     visit(tree, 'element', (node, index, parent) => {
-      const isChecked = (str: string) => test.test(str)
+      const isChecked = (str: string) => test.test(str.replace(/(\?|!|\#|$).+/g, ''))
       const child = node.children[0];
       const delimiter = /((?:https?:\/\/)(?:(?:[a-z0-9]?(?:[a-z0-9\-]{1,61}[a-z0-9])?\.[^\.|\s])+[a-z\.]*[a-z]+|(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})(?::\d{1,5})*[a-z0-9.,_\/~#&=;%+?\-\\(\\)]*)/g;
       // const delimiter = /((?:https?:\/\/)?(?:(?:[a-z0-9]?(?:[a-z0-9\-]{1,61}[a-z0-9])?\.[^\.|\s])+[a-z\.]*[a-z]+|(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})(?::\d{1,5})*[a-z0-9.,_\/~#&=;%+?\-\\(\\)]*)/g;

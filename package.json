@@ -16,7 +16,7 @@
     "fix": "tsc-esm-fix --target='lib' --ext='.js'",
     "type-check": "tsc --noEmit",
     "test": "tsbb test",
-    "coverage": "tsbb test --coverage"
+    "coverage": "tsbb test --coverage --bail"
   },
   "repository": {
     "type": "git",
