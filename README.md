@@ -11,7 +11,7 @@ Add improved video syntax: links to `.mp4` and `.mov` turn into videos. like [`g
 
 The following is a sample test of the video preview in GitHub:
 
-https://user-images.githubusercontent.com/1680273/138299599-88547edd-859c-44c9-8b52-2cc06f7f2dd3.mov?!#label=rehype-video
+https://user-images.githubusercontent.com/1680273/138299599-88547edd-859c-44c9-8b52-2cc06f7f2dd3.mov?!#title=Example%20Display
 
 ## Installation
 
