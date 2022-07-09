@@ -6,6 +6,7 @@ rehype-video
 [![Build](https://github.com/jaywcjlove/rehype-video/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/rehype-video/actions/workflows/ci.yml)
 [![Coverage Status](https://jaywcjlove.github.io/rehype-video/badges.svg)](https://jaywcjlove.github.io/rehype-video/lcov-report/)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/rehype-video)](https://bundlephobia.com/result?p=rehype-video)
+[![Repo Dependents](https://badgen.net/github/dependents-repo/jaywcjlove/rehype-video)](https://github.com/jaywcjlove/rehype-video/network/dependents)
 
 Add improved video syntax: links to `.mp4` and `.mov` turn into videos. like [`github video`](https://github.blog/2021-05-13-video-uploads-available-github/) features.
 
