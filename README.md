@@ -163,7 +163,7 @@ export declare type RehypeVideoOptions = {
 - [`rehype-attr`](https://github.com/jaywcjlove/rehype-attr) New syntax to add attributes to Markdown.
 - [`rehype-rewrite`](https://github.com/jaywcjlove/rehype-rewrite) Rewrite element with rehype.
 - [`rehype-ignore`](https://github.com/jaywcjlove/rehype-ignore) Ignore content display via HTML comments, Shown in GitHub readme, excluded in HTML.
-- [`rehypejs`](https://github.com/rehypejs/rehype) HTML processor powered by plugins part of the @unifiedjs collective
+- [`rehypejs`](https://github.com/rehypejs/rehype) HTML processor powered by plugins part of the [@unifiedjs](https://github.com/unifiedjs) collective
 - [`remark-parse`](https://www.npmjs.com/package/remark-parse) remark plugin to parse Markdown
 - [`remark-rehype`](https://www.npmjs.com/package/remark-rehype) remark plugin to transform to rehype
 - [`rehype-raw`](https://www.npmjs.com/package/rehype-raw) rehype plugin to reparse the tree (and raw nodes)
