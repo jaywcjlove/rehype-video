@@ -7,6 +7,7 @@
     "declaration": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitThis": true,
+    "skipLibCheck": true,
     "strictBindCallApply": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,

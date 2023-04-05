@@ -11,8 +11,8 @@
   "license": "MIT",
   "scripts": {
     "prepack": "npm run build",
-    "watch": "tsbb watch --disable-babel",
-    "build": "tsbb build --disable-babel && npm run fix",
+    "watch": "tsbb watch",
+    "build": "tsbb build && npm run fix",
     "fix": "tsc-esm-fix --target='lib' --ext='.js'",
     "type-check": "tsc --noEmit",
     "test": "tsbb test",
@@ -42,7 +42,7 @@
     ]
   },
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+    "node": "^14.13.1 || >=16.0.0"
   },
   "dependencies": {
     "unified": "~10.1.1",
@@ -56,6 +56,6 @@
     "remark-parse": "~10.0.0",
     "remark-rehype": "~10.1.0",
     "tsc-esm-fix": "~2.18.0",
-    "tsbb": "~3.7.1"
+    "tsbb": "^4.1.3"
   }
 }
