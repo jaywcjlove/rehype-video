@@ -22,7 +22,7 @@ jobs:
       - name: Create idoc config.
         run: |
           cat > idoc.yml << EOF
-          site: "Rehype Rewrite {{version}}"
+          site: "Rehype Video {{version}}"
           menus:
             Home: index.html
             Attr: https://jaywcjlove.github.io/rehype-attr/
