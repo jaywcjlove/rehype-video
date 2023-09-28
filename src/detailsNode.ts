@@ -9,6 +9,7 @@ export function detailsNode(title?: string): Element {
       {
         type: 'element',
         tagName: 'summary',
+        properties: {},
         children: [
           {
             type: 'element',

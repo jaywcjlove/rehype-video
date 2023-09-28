@@ -1,10 +1,10 @@
 import { unified } from 'unified';
-import gfm from 'remark-gfm';
 import { rehype } from 'rehype';
+import gfm from 'remark-gfm';
 import remark2rehype from 'remark-rehype';
 import remarkParse from 'remark-parse';
 import stringify from 'rehype-stringify';
-import rehypeVideo from '../src';
+import rehypeVideo from '../src/index.js';
 
 it('rehype-video title test case', () => {
   const mrkStr = `https://github.com/002.mp4?!#title=rehype-video`;
