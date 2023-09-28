@@ -1,7 +1,7 @@
-import { Plugin } from 'unified';
-import { Root, Element } from 'hast';
+import type { Plugin } from 'unified';
+import type { Root, Element } from 'hast';
 import { visit } from 'unist-util-visit';
-import { detailsNode } from './detailsNode';
+import { detailsNode } from './detailsNode.js';
 
 export type RehypeVideoOptions = {
   /**

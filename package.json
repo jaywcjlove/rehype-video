@@ -5,15 +5,14 @@
   "homepage": "https://jaywcjlove.github.io/rehype-video",
   "sideEffects": false,
   "type": "module",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "typings": "./lib/index.d.ts",
+  "exports": "./lib/index.js",
   "author": "jaywcjlove",
   "license": "MIT",
   "scripts": {
     "prepack": "npm run build",
     "watch": "tsbb watch",
-    "build": "tsbb build && npm run fix",
-    "fix": "tsc-esm-fix --target='lib' --ext='.js'",
+    "build": "tsbb build",
     "type-check": "tsc --noEmit",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage --bail"
@@ -37,6 +36,10 @@
     "unified"
   ],
   "jest": {
+    "extensionsToTreatAsEsm": [".ts"],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ]
@@ -55,7 +58,6 @@
     "remark-gfm": "~3.0.0",
     "remark-parse": "~10.0.0",
     "remark-rehype": "~10.1.0",
-    "tsc-esm-fix": "~2.20.0",
-    "tsbb": "^4.1.3"
+    "tsbb": "^4.2.3"
   }
 }
