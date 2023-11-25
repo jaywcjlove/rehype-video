@@ -31,6 +31,7 @@ jobs:
             Ignore: https://jaywcjlove.github.io/rehype-ignore/
             Rewrite: https://jaywcjlove.github.io/rehype-rewrite/
             Video: index.html
+            Sponsor: https://jaywcjlove.github.io/#/sponsor
           EOF
 
       - run: npm install idoc@1.26.6 -g
@@ -73,7 +74,7 @@ jobs:
           name: ${{ steps.create_tag.outputs.version }}
           tag: ${{ steps.create_tag.outputs.version }}
           body: |
-            [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/rehype-video@${{steps.create_tag.outputs.versionNumber}}/file/README.md)
+            [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor) [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/rehype-video@${{steps.create_tag.outputs.versionNumber}}/file/README.md)
 
             Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/jaywcjlove/rehype-video/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html  
             Comparing Changes: ${{ steps.changelog.outputs.compareurl }}  
