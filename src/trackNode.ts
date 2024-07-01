@@ -1,21 +1,25 @@
 import type { Element } from 'hast';
 
-export function trackNode(query: Record<string, string> = {}): Element[] {
-  let result: Record<string, Record<string, string>> = {}
-  let resultElement: Element[] = []
+export const trackNode = (query: Record<string, string> = {}): { query: Record<string, string>, element: Element[] } => {
+  const resultTrack: Record<string, Record<string, string>> = {}
+  const resultElement: Element[] = []
+  const resultQuery: Record<string, string> = {}
+  const result = { query: resultQuery, element: resultElement }
   Object.keys(query).forEach((key) => {
-    let keyMatch = key.match(/track\[['"](\w+:?\w+)['"]\]/i)
+    let keyMatch = key.trim().match(/track\[['"](\w+:?\w+)['"]\]/i)
     let queryKey = keyMatch ? keyMatch[1] : null
     if (queryKey) {
       let [lang, keyString] = queryKey.split(':')
-      if (!result[lang]) result[lang] = {}
+      if (!resultTrack[lang]) resultTrack[lang] = {}
       const value = query[key]
-      result[lang][keyString ?? "src"] = value
+      resultTrack[lang][keyString ?? "src"] = value
+    } else {
+      resultQuery[key] = query[key]
     }
   });
 
-  Object.keys(result).forEach((lang) => {
-    const track = result[lang]
+  Object.keys(resultTrack).forEach((lang) => {
+    const track = resultTrack[lang]
     resultElement.push({
       type: 'element',
       tagName: 'track',
@@ -26,5 +30,7 @@ export function trackNode(query: Record<string, string> = {}): Element[] {
       children: []
     })
   })
-  return resultElement
+  result.query = resultQuery
+  result.element = resultElement
+  return { ...result }
 }

@@ -22,27 +22,39 @@ export type RehypeVideoOptions = {
   track?: boolean;
 }
 
-const delimiter = /((?:https?:\/\/)(?:(?:[a-z0-9]?(?:[a-z0-9\-]{1,61}[a-z0-9])?\.[^\.|\s])+[a-z\.]*[a-z]+|(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})(?::\d{1,5})*[a-z0-9.,_\/~#&=;%+?\-\\(\\)]*)/g;
+function isValidURL(string: string) {
+  try {
+    new URL(string);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
 const properties = { muted: 'muted', controls: 'controls', style: 'max-height:640px;' };
 const queryStringToObject = (url: string) =>
-  [...new URLSearchParams(url.split('?!#')[1])].reduce(
+  [...new URLSearchParams(url.split('?')[1])].reduce(
     (a: Record<string, string>, [k, v]) => ((a[k] = v), a),
     {}
   );
 
 function reElement(node: Element, details: boolean, track: boolean, href: string) {
-  let url = /https?/.test(href) ? new URL(href).pathname : href;
-  const filename = url.split('/').pop()?.replace(/(\?|!|\#|$).+/, '');
-  node.properties = { ...properties, src: href };
+  const url = isValidURL(href.trim()) ? new URL(href) : null;
+  const pathname = url?.pathname || href;
+  const filename = pathname.split('/').pop()?.replace(/(\?|!|\#|$).+/, '');
+  const params = queryStringToObject(href.replace(/\?\!/, "?").replace(/\?\!\#/, "?"));
+  const { title = filename } = params;
+  const result = trackNode(params);
+  const searchParams = new URLSearchParams({ ...result.query });
+  if (url) {
+    url.search = searchParams.toString() ?? "";
+  }
   node.tagName = 'video';
   node.children = [];
-  const { title = filename, ...other }= queryStringToObject(href);
-
+  node.properties = { ...properties, src: url?.toString() || href };
   if (track) {
-    const trNode = trackNode(other);
-    trNode.forEach((tr) => node.children.push({ ...tr }));
+    result.element.forEach((tr) => node.children.push({ ...tr }));
   }
-
   if (details) {
     const reNode = detailsNode(title);
     reNode.children.push({ ...node });
@@ -60,7 +72,7 @@ const RehypeVideo: Plugin<[RehypeVideoOptions?], Root> = (options) => {
       const child = node.children[0];
 
       if (node.tagName === 'p' && node.children.length === 1) {
-        if (child.type === 'text' && delimiter.test(child.value) && isChecked(child.value)) {
+        if (child.type === 'text' && isValidURL(child.value) && isChecked(child.value)) {
           reElement(node, details, track, child.value);
         }
         if (child.type === 'element' && child.tagName === 'a' && child.properties && typeof child.properties.href === 'string' && isChecked(child.properties.href)) {
