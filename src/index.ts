@@ -9,7 +9,7 @@ export type RehypeVideoOptions = {
    * URL suffix verification.
    * @default /\/(.*)(.mp4|.mov)$/
    */
-  test?: RegExp;
+  test?: RegExp | ((url: string) => boolean);
   /**
    * Support `<details>` tag to wrap <video>.
    * @default true
@@ -65,10 +65,14 @@ function reElement(node: Element, details: boolean, track: boolean, href: string
 }
 
 const RehypeVideo: Plugin<[RehypeVideoOptions?], Root> = (options) => {
-  const { test = /\/(.*)(.mp4|.mov)$/, details = true, track = true } = options || {};
+  const { test = /\/(.*)(.mp4|.mov)$/i, details = true, track = true } = options || {};
   return (tree) => {
     visit(tree, 'element', (node, index, parent) => {
-      const isChecked = (str: string) => test.test(str.replace(/(\?|!|\#|$).+/g, '').toLocaleLowerCase())
+      const isChecked = (str: string) => {
+        if (test instanceof RegExp) return test.test(str.replace(/(\?|!|\#|$).+/g, '').toLocaleLowerCase())
+        if (typeof test === 'function') return test(str)
+        return false;
+      }
       const child = node.children[0];
 
       if (node.tagName === 'p' && node.children.length === 1) {
