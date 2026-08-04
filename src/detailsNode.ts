@@ -4,7 +4,7 @@ export function detailsNode(title?: string): Element {
   return {
     type: 'element',
     tagName: 'details',
-    properties: { open: true, className: 'octicon octicon-video' },
+    properties: { open: true, className: ['octicon', 'octicon-video'] },
     children: [
       {
         type: 'element',
@@ -16,7 +16,7 @@ export function detailsNode(title?: string): Element {
             tagName: 'svg',
             properties: {
               'aria-hidden': true, height: 16, width: 16, viewBox: '0 0 16 16', version: '1.1', 'data-view-component': true,
-              className: 'octicon octicon-device-camera-video'
+              className: ['octicon', 'octicon-device-camera-video']
             },
             children: [
               {
@@ -47,7 +47,7 @@ export function detailsNode(title?: string): Element {
             type: 'element',
             tagName: 'span',
             properties: {
-              className: 'dropdown-caret'
+              className: ['dropdown-caret']
             },
             children: []
           }
