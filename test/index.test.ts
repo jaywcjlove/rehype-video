@@ -4,6 +4,7 @@ import gfm from 'remark-gfm';
 import remark2rehype from 'remark-rehype';
 import remarkParse from 'remark-parse';
 import stringify from 'rehype-stringify';
+import { expect, it } from '@jest/globals';
 import rehypeVideo from '../src/index.js';
 
 it('rehype-video `test:((url: string) => boolean)` test case', () => {
