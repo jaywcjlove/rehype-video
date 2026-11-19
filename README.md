@@ -259,7 +259,7 @@ Output:
 export declare type RehypeVideoOptions = {
   /**
    * URL suffix verification.
-   * @default /\/(.*)(.mp4|.mov)$/
+   * @default /\/(.*)(\.mp4|\.mov)$/i
    */
   test?: RegExp;
   /**

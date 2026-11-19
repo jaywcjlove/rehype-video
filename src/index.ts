@@ -7,7 +7,7 @@ import { trackNode } from './trackNode.js';
 export type RehypeVideoOptions = {
   /**
    * URL suffix verification.
-   * @default /\/(.*)(.mp4|.mov)$/
+   * @default /\/(.*)(\.mp4|\.mov)$/i
    */
   test?: RegExp | ((url: string) => boolean);
   /**
@@ -65,7 +65,7 @@ function reElement(node: Element, details: boolean, track: boolean, href: string
 }
 
 const RehypeVideo: Plugin<[RehypeVideoOptions?], Root> = (options) => {
-  const { test = /\/(.*)(.mp4|.mov)$/i, details = true, track = true } = options || {};
+  const { test = /\/(.*)(\.mp4|\.mov)$/i, details = true, track = true } = options || {};
   return (tree) => {
     visit(tree, 'element', (node, index, parent) => {
       const isChecked = (str: string) => {

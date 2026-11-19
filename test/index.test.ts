@@ -229,3 +229,28 @@ it('rehype-video WebVTT `double-quoted parameter` test case', () => {
     .toString();
     expect(htmlStr).toEqual(expected2);
 });
+
+it('default test matches only .mp4 and .mov extensions', () => {
+  const processor = unified()
+    .use(remarkParse)
+    .use(remark2rehype)
+    .use(rehypeVideo, { details: false })
+    .use(stringify);
+
+  const plain = [
+    ['[How to convert to MP4](https://example.com/blog/how-to-convert-to-mp4)', '<p><a href="https://example.com/blog/how-to-convert-to-mp4">How to convert to MP4</a></p>'],
+    ['[MOV docs](/docs/mov)', '<p><a href="/docs/mov">MOV docs</a></p>'],
+    ['https://example.com/mp4', '<p>https://example.com/mp4</p>'],
+  ] as const;
+
+  for (const [md, expected] of plain) {
+    expect(String(processor.processSync(md))).toEqual(expected);
+  }
+
+  expect(String(processor.processSync('[Demo](https://example.com/demo.mp4)'))).toEqual(
+    '<video muted controls style="max-height:640px;" src="https://example.com/demo.mp4"></video>',
+  );
+  expect(String(processor.processSync('https://example.com/demo.MOV'))).toEqual(
+    '<video muted controls style="max-height:640px;" src="https://example.com/demo.MOV"></video>',
+  );
+});
